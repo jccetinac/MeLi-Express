@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "description": "nuevo proyecto de express",
   "main": "index.js",
-
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon index.js"
