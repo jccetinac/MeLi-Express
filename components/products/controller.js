@@ -21,7 +21,7 @@ function getMessages(filter){
                     "price": {
                         "currency": currency_id,
                         "amount": price,
-                        "decimals": 0,
+                        "decimals": '00',
                     },
                     "picture": thumbnail,
                     "condition": condition,
@@ -70,7 +70,7 @@ function getProductById(filter){
                     "price": {
                         "currency": currency_id,
                         "amount": price,
-                        "decimals": 0,
+                        "decimals": '00',
                     },
                     "picture": thumbnail,
                     "condition": condition,
