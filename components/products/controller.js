@@ -11,15 +11,11 @@ function getMessages(filter){
         
         resolve(store.list(filter).then( resp=> {
 
-            const refactorResponse= resp.data.results.slice(0,4);
-            const newArray= refactorResponse.map(  product=>{
+            const selectedList= resp.data.results.slice(0,4);
+            const newArray= selectedList.map(  product=>{
                 const { id, title, thumbnail, price, prices, currency_id, condition, sold_quantity , shipping} = product;
                 console.log({ id, title, thumbnail, price, prices, currency_id, condition, sold_quantity , shipping});
                 const newProduct = {
-                    "author": {
-                        "name": "camilo",
-                        "lastname": "cetina"
-                    },
                     "id": id,
                     "title": title,
                     "price": {
@@ -31,12 +27,20 @@ function getMessages(filter){
                     "condition": condition,
                     "free_shipping": shipping.free_shipping,
                     "sold_quantity": sold_quantity
-                };
-                
+                }; 
                 return newProduct;
             });
 
-         return newArray;   
+        const newResponse= {
+                'author': {
+                'name': 'camilo',
+                'lastname': 'cetina'
+                },
+                categories: ['String', 'String', 'String'],
+                items: newArray
+            }
+
+         return newResponse;   
         }));
     });
 }
