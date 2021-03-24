@@ -2,7 +2,6 @@
 // importa express el router y bodyParser
 const express = require('express');
 require('dotenv').config();
-console.log(process.env);
 
 const bodyParser = require('body-parser');
 const router = require('./network/routes');

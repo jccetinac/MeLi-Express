@@ -13,14 +13,26 @@ function getMessages(filter){
 
             const refactorResponse= resp.data.results.slice(0,4);
             const newArray= refactorResponse.map(  product=>{
-                const { id ,  title, thumbnail, price, description } = product;
-                newProduct ={
-                    'id': id,
-                    'title': title,
-                    'thumbnail': thumbnail,
-                    'price': price,
-                    'description:': description
+                const { id, title, thumbnail, price, prices, currency_id, condition, sold_quantity , shipping} = product;
+                console.log({ id, title, thumbnail, price, prices, currency_id, condition, sold_quantity , shipping});
+                const newProduct = {
+                    "author": {
+                        "name": "camilo",
+                        "lastname": "cetina"
+                    },
+                    "id": id,
+                    "title": title,
+                    "price": {
+                        "currency": currency_id,
+                        "amount": price,
+                        "decimals": 0,
+                    },
+                    "picture": thumbnail,
+                    "condition": condition,
+                    "free_shipping": shipping.free_shipping,
+                    "sold_quantity": sold_quantity
                 };
+                
                 return newProduct;
             });
 
@@ -41,15 +53,28 @@ function getProductById(filter){
 
                 const {data} = await store.description(filter);
                 const description = data.plain_text;
-                console.log(description);
-                const { id ,  title, thumbnail, price } = resp.data;
-                const newProduct ={
+                
+                const { id, title, thumbnail, price, currency_id, condition, sold_quantity , shipping} = resp.data;
+
+                const newProduct = {
+                    'author': {
+                        'name': 'camilo',
+                        'lastname': 'cetina'
+                    },
                     'id': id,
                     'title': title,
-                    'thumbnail': thumbnail,
-                    'price': price,
+                    "price": {
+                        "currency": currency_id,
+                        "amount": price,
+                        "decimals": 0,
+                    },
+                    "picture": thumbnail,
+                    "condition": condition,
+                    "free_shipping": shipping.free_shipping,
+                    "sold_quantity": sold_quantity,
                     'description': description
                 };
+                
                 
          return newProduct;   
         }));
