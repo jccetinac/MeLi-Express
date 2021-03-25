@@ -24,7 +24,7 @@ function getResults(filter){
             console.log(newCategoriesList);
 
             const newArray= selectedList.map(  product=>{
-                const { id, title, thumbnail, price, prices, currency_id, condition, sold_quantity , shipping} = product;
+                const { id, title, thumbnail, price, prices, currency_id, condition, sold_quantity , shipping, seller_address } = product;
                 const newProduct = {
                     "id": id,
                     "title": title,
@@ -35,7 +35,8 @@ function getResults(filter){
                     },
                     "picture": thumbnail,
                     "condition": condition,
-                    "free_shipping": shipping.free_shipping
+                    "free_shipping": shipping.free_shipping,
+                    "city": seller_address.city.name
                 }; 
                 return newProduct;
             });
