@@ -24,8 +24,7 @@ function getResults(filter){
                     },
                     "picture": thumbnail,
                     "condition": condition,
-                    "free_shipping": shipping.free_shipping,
-                    "sold_quantity": sold_quantity
+                    "free_shipping": shipping.free_shipping
                 }; 
                 return newProduct;
             });
@@ -60,23 +59,26 @@ function getProductById(filter){
                 const { id, title, thumbnail, price, currency_id, condition, sold_quantity , shipping} = resp.data;
 
                 const newProduct = {
-                    'author': {
-                        'name': CONST.LIST.AUTOR_FIRST_NAME,
-                        'lastname': CONST.LIST.AUTOR_LAST_NAME
-                    },
-                    'id': id,
-                    'title': title,
-                    "price": {
-                        "currency": currency_id,
-                        "amount": price,
-                        "decimals": '00',
-                    },
-                    "picture": thumbnail,
-                    "condition": condition,
-                    "free_shipping": shipping.free_shipping,
-                    "sold_quantity": sold_quantity,
-                    'description': description
-                };
+                        'author': {
+                            'name': CONST.LIST.AUTOR_FIRST_NAME,
+                            'lastname': CONST.LIST.AUTOR_LAST_NAME
+                        },
+                        'item': {
+                            'id': id,
+                            'title': title,
+                            "price": {
+                                "currency": currency_id,
+                                "amount": price,
+                                "decimals": '00',
+                            },
+                            "picture": thumbnail,
+                            "condition": condition,
+                            "free_shipping": shipping.free_shipping,
+                            "sold_quantity": sold_quantity,
+                            'description': description
+                        }                       
+                    }
+
                 
                 
          return newProduct;   
