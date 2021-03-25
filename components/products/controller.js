@@ -12,6 +12,17 @@ function getResults(filter){
         resolve(store.list(filter).then( resp=> {
 
             const selectedList= resp.data.results.slice(0,4);
+            const categoriesList= resp.data.filters;
+            console.log('resp.data.fiters');
+            
+            console.log(resp.data.filters);
+            const newCategoriesList= categoriesList.map( cat=> {
+                const newCat= cat.values[0].name;
+                console.log(newCat);
+                return newCat;
+            });
+            console.log(newCategoriesList);
+
             const newArray= selectedList.map(  product=>{
                 const { id, title, thumbnail, price, prices, currency_id, condition, sold_quantity , shipping} = product;
                 const newProduct = {
@@ -34,7 +45,7 @@ function getResults(filter){
                 'name': CONST.LIST.AUTOR_FIRST_NAME,
                 'lastname': CONST.LIST.AUTOR_LAST_NAME
                 },
-                categories: ['String', 'String', 'String'],
+                categories: newCategoriesList,
                 items: newArray
             }
 
