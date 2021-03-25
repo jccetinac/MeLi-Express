@@ -1,12 +1,12 @@
 const store = require('./store');
+const CONST = require('../../utilities/constants');
 
-function getMessages(filter){
-
+function getResults(filter){
     return new Promise((resolve, reject)=>{
 
         if(store.list === null){
-                console.error('[message error] no hay ningun mensaje');
-               return reject(' no se encontro nada');       
+                console.error(CONST.LIST.MENSSAGE_NO_PRODUCT);
+               return reject(CONST.LIST.NO_RESULTS);       
         };
         
         resolve(store.list(filter).then( resp=> {
@@ -14,7 +14,6 @@ function getMessages(filter){
             const selectedList= resp.data.results.slice(0,4);
             const newArray= selectedList.map(  product=>{
                 const { id, title, thumbnail, price, prices, currency_id, condition, sold_quantity , shipping} = product;
-                console.log({ id, title, thumbnail, price, prices, currency_id, condition, sold_quantity , shipping});
                 const newProduct = {
                     "id": id,
                     "title": title,
@@ -33,8 +32,8 @@ function getMessages(filter){
 
         const newResponse= {
                 'author': {
-                'name': 'camilo',
-                'lastname': 'cetina'
+                'name': CONST.LIST.AUTOR_FIRST_NAME,
+                'lastname': CONST.LIST.AUTOR_LAST_NAME
                 },
                 categories: ['String', 'String', 'String'],
                 items: newArray
@@ -49,8 +48,8 @@ function getProductById(filter){
 
     return new Promise((resolve, reject)=>{
         if(store.product === null){
-                console.error('[message error] no hay ningun producto');
-               return reject(' no se encontro nada');              
+                console.error(CONST.LIST.MENSSAGE_NO_PRODUCT);
+               return reject(CONST.LIST.NO_RESULTS);              
         };
         
         resolve(store.product(filter).then( async resp=> {
@@ -62,8 +61,8 @@ function getProductById(filter){
 
                 const newProduct = {
                     'author': {
-                        'name': 'camilo',
-                        'lastname': 'cetina'
+                        'name': CONST.LIST.AUTOR_FIRST_NAME,
+                        'lastname': CONST.LIST.AUTOR_LAST_NAME
                     },
                     'id': id,
                     'title': title,
@@ -85,4 +84,4 @@ function getProductById(filter){
     });
 }
 
-module.exports = {getMessages, getProductById};
+module.exports = {getResults, getProductById};

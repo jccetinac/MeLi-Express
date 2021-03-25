@@ -2,25 +2,24 @@ const express= require('express');
 router = express.Router();
 const response = require('../../network/response');
 const controller = require('./controller');
+const CONSTANTS = require('../../utilities/constants');
 
 
-//metodos
+//metods
 
-router.get('/items/', function(req, res){
-    controller.getMessages(req.query.search)
-    .then((listProcesada)=> {
-        const test= listProcesada;
-        response.success(req, res, test)
+router.get(CONSTANTS.LIST.API_PATH_ITEMS, function(req, res){
+    controller.getResults(req.query.search)
+    .then((productList)=> {
+        response.success(req, res, productList)
     })
     .catch(e => {response.error(req, res)})
     
 });
 
-router.get('/items/:id', function(req, res){
-    console.log(req.params.id);
+router.get(`${CONSTANTS.LIST.API_PATH_ITEMS}:id`, function(req, res){
     controller.getProductById(req.params.id)
-    .then((listProcesada)=> {
-        response.success(req, res, listProcesada)
+    .then((productResponse)=> {
+        response.success(req, res, productResponse)
     })
     .catch(e => {response.error(req, res)})
     

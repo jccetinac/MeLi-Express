@@ -1,10 +1,11 @@
 const axios = require('axios').default;
+const CONSTANTS = require('../../utilities/constants');
 
 
-async function getMessages(filter){
+async function getResults(filter){
 
   try {
-    const response = await axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=${filter}`);
+    const response = await axios.get(`${CONSTANTS.LIST.PROTOCOL}${CONSTANTS.LIST.MELI_API_URL}${CONSTANTS.LIST.MELI_PATH_SEARCH}${filter}`);
     return response;
     
   } catch (error) {
@@ -15,7 +16,7 @@ async function getMessages(filter){
 async function getProductById(filter){
     
   try {
-    const response = await axios.get(`https://api.mercadolibre.com/items/${filter}`);
+    const response = await axios.get(`${CONSTANTS.LIST.PROTOCOL}${CONSTANTS.LIST.MELI_API_URL}${CONSTANTS.LIST.MELI_PATH_PRODUCT}${filter}`);
 
     return response;
     
@@ -27,7 +28,7 @@ async function getProductById(filter){
 async function getProductDescriptionById(filter){
     
   try {
-    const response = await axios.get(`https://api.mercadolibre.com/items/${filter}/description`);
+    const response = await axios.get(`${CONSTANTS.LIST.PROTOCOL}${CONSTANTS.LIST.MELI_API_URL}${CONSTANTS.LIST.MELI_PATH_PRODUCT}${filter}/${CONSTANTS.LIST.MELI_PATH_DESCRIPTION}`);
     return response;
     
   } catch (error) {
@@ -36,7 +37,7 @@ async function getProductDescriptionById(filter){
 } 
 
 module.exports = {
-    list: getMessages,
+    list: getResults,
     product: getProductById,
     description: getProductDescriptionById
 }
