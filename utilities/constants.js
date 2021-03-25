@@ -8,6 +8,7 @@ constants = {
     'MELI_API_URL': 'api.mercadolibre.com/',
     'MELI_PATH_SEARCH': 'sites/MLA/search?q=',
     'MELI_PATH_PRODUCT': 'items/',
+    'MELI_PATH_CAT':'categories/',
     'MELI_PATH_DESCRIPTION': 'description',
     'API_PATH_ITEMS': '/items/',
     'API_PATH_BASE': '/api'

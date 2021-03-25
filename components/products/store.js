@@ -36,8 +36,21 @@ async function getProductDescriptionById(filter){
   }
 } 
 
+
+async function getCatById(id){
+    
+  try {
+    const response = await axios.get(`${CONSTANTS.LIST.PROTOCOL}${CONSTANTS.LIST.MELI_API_URL}${CONSTANTS.LIST.MELI_PATH_CAT}${id}`);
+    console.log(response);
+    return response;
+    
+  } catch (error) {
+    console.error(error);
+  }
+} 
 module.exports = {
     list: getResults,
     product: getProductById,
-    description: getProductDescriptionById
+    description: getProductDescriptionById,
+    category: getCatById
 }

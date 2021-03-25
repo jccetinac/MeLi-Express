@@ -67,8 +67,12 @@ function getProductById(filter){
 
                 const {data} = await store.description(filter);
                 const description = data.plain_text;
+               
                 
-                const { id, title, thumbnail, price, currency_id, condition, sold_quantity , shipping} = resp.data;
+                const { id, title, pictures, price, currency_id, condition, sold_quantity , shipping, category_id} = resp.data;
+                const {data:respCategory} = await store.category(category_id);
+
+                const photo = pictures[0].url;
 
                 const newProduct = {
                         'author': {
@@ -83,11 +87,12 @@ function getProductById(filter){
                                 "amount": price,
                                 "decimals": '00',
                             },
-                            "picture": thumbnail,
+                            "picture": photo,
                             "condition": condition,
                             "free_shipping": shipping.free_shipping,
                             "sold_quantity": sold_quantity,
-                            'description': description
+                            'description': description,
+                            'category': respCategory.name
                         }                       
                     }
 
